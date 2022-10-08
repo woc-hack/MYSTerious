@@ -1,0 +1,60 @@
+# Mongo db command
+mongosh --host=da1
+mongosh>use WoC;
+WoC> db.A_metadata.U.findOne({NumCommits:{$gt:200}})
+
+mongos> db.A_metadata.U.findOne({'Gender':'female' })
+{
+        "_id" : ObjectId("629002b5d7d46b4d9632d481"),
+        "FileInfo" : {
+                "Python" : 14,
+                "other" : 83,
+                "Perl" : 2,
+                "Sql" : 3,
+                "JavaScript" : 1,
+                "Java" : 8,
+                "C/C++" : 22
+        },
+        "NumActiveMon" : 14,
+        "EarliestCommitDate" : 1596735100,
+        "Gender" : "female",
+        "LatestCommitDate" : 1632834097,
+        "MonNprj" : {
+                "2021-07" : 3,
+                "2021-01" : 1,
+                "2020-11" : 1,
+                "2021-05" : 2,
+                "2021-08" : 2,
+                "2020-08" : 12,
+                "2021-06" : 3,
+                "2020-12" : 4,
+                "2020-10" : 5,
+                "2021-03" : 3,
+                "2021-02" : 3,
+                "2020-09" : 9,
+                "2021-09" : 2,
+                "2021-04" : 1
+        },
+        "NumOriginatingBlobs" : 682,
+        "AuthorID" : "Nivedhitha D <50760049+nive927@users.noreply.github.com>",
+        "MonNcmt" : {
+                "2021-07" : 7,
+                "2021-01" : 5,
+                "2020-11" : 1,
+                "2021-05" : 37,
+                "2021-08" : 3,
+                "2020-08" : 62,
+                "2021-06" : 28,
+                "2020-12" : 35,
+                "2020-10" : 23,
+                "2021-03" : 45,
+                "2021-02" : 4,
+                "2020-09" : 209,
+                "2021-09" : 8,
+                "2021-04" : 48
+        },
+        "NumProjects" : 23,
+        "NumCommits" : 515,
+        "NumFiles" : 133
+}
+

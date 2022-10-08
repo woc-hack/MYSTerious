@@ -1,0 +1,500 @@
+mongo
+show databases
+use WoC
+show collections
+mongos> db.A_metadata.U.findOne()
+
+mongos> db.A_metadata.U.findOne({'Gender':'female' })
+{
+        "_id" : ObjectId("629002b5d7d46b4d9632d481"),
+        "FileInfo" : {
+                "Python" : 14,
+                "other" : 83,
+                "Perl" : 2,
+                "Sql" : 3,
+                "JavaScript" : 1,
+                "Java" : 8,
+                "C/C++" : 22
+        },
+        "NumActiveMon" : 14,
+        "EarliestCommitDate" : 1596735100,
+        "Gender" : "female",
+        "LatestCommitDate" : 1632834097,
+        "MonNprj" : {
+                "2021-07" : 3,
+                "2021-01" : 1,
+                "2020-11" : 1,
+                "2021-05" : 2,
+                "2021-08" : 2,
+                "2020-08" : 12,
+                "2021-06" : 3,
+                "2020-12" : 4,
+                "2020-10" : 5,
+                "2021-03" : 3,
+                "2021-02" : 3,
+                "2020-09" : 9,
+                "2021-09" : 2,
+                "2021-04" : 1
+        },
+        "NumOriginatingBlobs" : 682,
+        "AuthorID" : "Nivedhitha D <50760049+nive927@users.noreply.github.com>",
+        "MonNcmt" : {
+                "2021-07" : 7,
+                "2021-01" : 5,
+                "2020-11" : 1,
+                "2021-05" : 37,
+                "2021-08" : 3,
+                "2020-08" : 62,
+                "2021-06" : 28,
+                "2020-12" : 35,
+                "2020-10" : 23,
+                "2021-03" : 45,
+                "2021-02" : 4,
+                "2020-09" : 209,
+                "2021-09" : 8,
+                "2021-04" : 48
+        },
+        "NumProjects" : 23,
+        "NumCommits" : 515,
+        "NumFiles" : 133
+}
+
+mongos> db.A_metadata.U.distinct('Gender')
+[ "female", "male" ]
+
+mongos> db.A_metadata.U.count()
+39,994,754 -> 40 million             
+
+mongos> db.A_metadata.U.count({'Gender':'male'})
+15134453  -> 15.13 million    
+
+mongos>  db.A_metadata.U.count({'Gender':'female'})
+3283682  -> 3,283,682 million -> 3.2 million
+
+mongos> db.A_metadata.U.count({$and: [ { NumCommits:{$gt:10} }, {'Gender':'female'} ]})
+1460090  -> 1.46 million
+
+mongos> db.A_metadata.U.count({$and: [ { NumProjects:{$gt:1} }, {'Gender':'female'} ]})
+1807634  -> 1.8 million
+
+mongos> db.A_metadata.U.count({$and: [ { NumProjects:{$gt:10} }, {'Gender':'female'} ]})
+338290  -> 338 thousand
+
+mongos> db.A_metadata.U.distinct('NumProjects',{'Gender':'female'})
+[
+        1,
+        2,
+        22,
+        23,
+        41,
+        42,
+        .....
+        5198,
+        5756,
+        6045,
+        8796,
+        10888
+]
+
+mongos> db.P_metadata.U2.findOne()
+{
+        "_id" : ObjectId("6290011c53748a254243c6f9"),
+        "FileInfo" : {
+                "other" : 5,
+                "PHP" : 8,
+                "JavaScript" : 2
+        },
+        "NumAuthors" : 1,
+        "NumActiveMon" : 1,
+        "EarliestCommitDate" : 1508271787,
+        "RootFork" : "VictorFursa_simple_php_framework",
+        "Gender" : {
+                "male" : 1
+        },
+        "NumBlobs" : 35,
+        "ProjectID" : "origs_simple_php_framework",
+        "MonNcmt" : {
+                "2017-10" : 10
+        },
+        "MonNauth" : {
+                "2017-10" : 1
+        },
+        "LatestCommitDate" : 1508358543,
+        "NumCore" : 1,
+        "NumFiles" : 15,
+        "CommunitySize" : 2,
+        "NumCommits" : 10,
+        "NumForks" : 1,
+        "Core" : {
+                "VictorFursa <victor.fursa.ck@gamil.com>" : "10"
+        }
+}
+
+mongos> db.P_metadata.U.findOne({'Gender.female':{ $gt: 1}})
+{
+        "_id" : ObjectId("629018a88b2efbc6e39f5569"),
+        "FileInfo" : {
+                "other" : 50,
+                "JavaScript" : 13
+        },
+        "NumAuthors" : 2,
+        "NumActiveMon" : 1,
+        "EarliestCommitDate" : 1550806380,
+        "Gender" : {
+                "female" : 2
+        },
+        "NumBlobs" : 67,
+        "ProjectID" : "PingPingE_Secure",
+        "MonNcmt" : {
+                "2019-02" : 21
+        },
+        "MonNauth" : {
+                "2019-02" : 2
+        },
+        "LatestCommitDate" : 1550853660,
+        "NumCore" : 2,
+        "NumFiles" : 63,
+        "CommunitySize" : 1,
+        "NumCommits" : 21,
+        "NumForks" : 0,
+        "Core" : {
+                "unknown <ds03023@gmail.com>" : "5",
+                "PingPingE <47843060+PingPingE@users.noreply.github.com>" : "16"
+        }
+}
+
+mongos> db.P_metadata.U2.findOne({'Gender.male':{ $gt: 1}})
+{
+        "_id" : ObjectId("6290011c53748a254243c6fe"),
+        "FileInfo" : {
+                "Ruby" : 7,
+                "other" : 16
+        },
+        "NumAuthors" : 2,
+        "NumActiveMon" : 2,
+        "EarliestCommitDate" : 1391748480,
+        "Gender" : {
+                "male" : 2
+        },
+        "NumBlobs" : 55,
+        "ProjectID" : "aost_todos",
+        "MonNcmt" : {
+                "2014-03" : 10,
+                "2014-02" : 6
+        },
+        "MonNauth" : {
+                "2014-03" : 2,
+                "2014-02" : 1
+        },
+        "LatestCommitDate" : 1395343745,
+        "NumCore" : 1,
+        "NumFiles" : 23,
+        "CommunitySize" : 3,
+        "NumCommits" : 16,
+        "NumForks" : 0,
+        "Core" : {
+                "Ryan Stout <ryanstout@gmail.com>" : "14"
+        }
+}
+mongos> db.P_metadata.U2.findOne({'Gender.female':{ $gt: 0}})
+null
+
+mongos> db.P_metadata.U2.distinct("Gender")
+[ { "male" : 1 }, { "male" : 2 } ]
+
+mongos> db.P_metadata.U1.distinct("Gender")
+[
+        {
+                "female" : 1
+        },
+        {
+                "female" : 1,
+                "male" : 1
+        },
+        {
+                "female" : 1,
+                "male" : 2
+        },
+        {
+                "female" : 1,
+                "male" : 3
+        },
+        {
+                "female" : 2
+        },
+        {
+                "female" : 2,
+                "male" : 1
+        },
+        {
+                "male" : 1
+        },
+        {
+                "male" : 2
+        },
+        {
+                "male" : 3
+        }
+]
+
+mongos> db.P_metadata.U1.count({'Gender.female':{ $gt: 0}})
+12
+mongos> db.P_metadata.U.count({'Gender.female':{ $gt: 0}})
+12252048 - 12 million projects with female participation
+
+mongos> db.P_metadata.U.count()
+107936842
+mongos> db.P_metadata.U1.count()
+100
+mongos> db.P_metadata.U2.count()
+10
+
+mongos> db.P_metadata.U.findOne()
+{
+        "_id" : ObjectId("629018a88b2efbc6e39f540b"),
+        "FileInfo" : {
+                "other" : 14,
+                "C/C++" : 2,
+                "JavaScript" : 1
+        },
+        "NumAuthors" : 1,
+        "MonNauth" : {
+                "2017-10" : 2
+        },
+        "NumActiveMon" : 1,
+        "EarliestCommitDate" : 1507786986,
+        "NumBlobs" : 17,
+        "LatestCommitDate" : 1507787014,
+        "ProjectID" : "yashendaoren-iOS_webView-03",
+        "MonNcmt" : {
+                "2017-10" : 2
+        },
+        "NumCore" : 1,
+        "NumCommits" : 2,
+        "CommunitySize" : 1,
+        "NumFiles" : 17,
+        "Core" : {
+                "yashendaoren <learnforuse@163.com>" : "2"
+        },
+        "NumForks" : 0
+}
+mongos>mongos> db.P_metadata.U.distinct("Gender.female")
+[
+        1,
+        2,
+        3,
+        4,
+       ....
+]
+
+
+mongo db_name --quiet --eval 'DBQuery.shellBatchSize = 2000; db.users.find({}).limit(2000).toArray()' > users.json
+
+
+mongos> db.A_metadata.U.findOne({$and: [ { NumProjects:{$gt:8796} }, {'Gender':'female'} ]})
+{
+        "_id" : ObjectId("62900e8dd7d46b4d962a1c27"),
+        "FileInfo" : {
+                "Ruby" : 10073,
+                "Perl" : 299,
+                "TypeScript" : 266,
+                "Go" : 4,
+                "Python" : 83,
+                "other" : 58156,
+                "PHP" : 1805,
+                "Sql" : 222,
+                "Dart" : 4,
+                "R" : 36,
+                "Lisp" : 7,
+                "C/C++" : 857,
+                "Java" : 901,
+                "JavaScript" : 9245
+        },
+        "NumActiveMon" : 51,
+        "EarliestCommitDate" : 1509621179,
+        "ApiInfo" : {
+                "C:unit_test.hpp" : 13,
+                "PY:math" : 7,
+                "C:threads.h" : 5,
+                "rb:romkan" : 4,
+                "PY:tkinter.ttk" : 9,
+                "PY:transaction.transactions.UTXOManager" : 9,
+                "C:stdlib.h" : 59,
+                "PY:ccxt.base.errors.NotSupported" : 6,
+                "PY:utils.key_manager.KeyManager" : 11,
+                "rb:cgi" : 5,
+                "PY:ccxt.base.errors.ArgumentsRequired" : 6,
+                "PY:types" : 6,
+                "rb:nokogiri" : 7,
+                "PY:logging" : 8,
+                "PY:transaction.transactions.TransactionInput" : 9,
+                "PY:numbers.Number" : 6,
+                "PY:gzip" : 6,
+                "PY:ccxt.base.decimal_to_precision.DECIMAL_PLACES" : 6,
+                "PY:tkinter.filedialog" : 9,
+                "PY:ccxt.base.errors.NetworkError" : 6,
+                "PY:ccxt.base.errors.ExchangeError" : 7,
+                "PY:json" : 20,
+                "PY:requests.exceptions.HTTPError" : 6,
+                "rb:rubygems" : 6,
+                "rb:rexml/document" : 5,
+                "PY:threading" : 5,
+                "C:map" : 7,
+                "C:string.h" : 32,
+                "rb:nkf" : 12,
+                "PY:ssl.SSLError" : 6,
+                "rb:spec_helper" : 15,
+                "C:strencodings.h" : 4,
+                "PY:copy" : 12,
+                "C:math.h" : 17,
+                "PY:cryptography.hazmat.primitives.serialization.load_pem_private_key" : 6,
+                "PY:io" : 6,
+                "PY:cryptography.hazmat.backends" : 6,
+                "PY:core.client_core.ClientCore" : 9,
+                "C:set" : 5,
+                "PY:ccxt.base.errors.AuthenticationError" : 7,
+                "PY:tkinter.messagebox" : 9,
+                "PY:ccxt.base.errors.InvalidAddress" : 6,
+                "PY:uuid" : 6,
+                "rb:open-uri" : 10,
+                "PY:transaction.transactions.Transaction" : 9,
+                "PY:zlib" : 6,
+                "PY:base64" : 15,
+                "PY:collections" : 6,
+                "C:utility" : 6,
+                "PY:time" : 10,
+                "PY:cryptography.hazmat.primitives.hashes" : 7,
+                "rb:csv" : 10,
+                "PY:requests.Session" : 6,
+                "C:wchar.h" : 7,
+                "C:string" : 8,
+                "C:time.h" : 8,
+                "PY:tkinter.ttk.Button" : 9,
+                "PY:re" : 6,
+                "C:stdio.h" : 64,
+                "C:stdef.h" : 9,
+                "PY:sys" : 11,
+                "PY:utils.aes_util.AESUtil" : 9,
+                "PY:tkinter" : 9,
+                "C:vector" : 9,
+                "C:stdbool.h" : 15,
+                "rb:rails_helper" : 8,
+                "PY:p2p.message_manager" : 11,
+                "PY:pprint" : 9,
+                "C:complex.h" : 5,
+                "rb:pathname" : 4,
+                "PY:hashlib" : 6,
+                "C:stlib.h" : 6,
+                "PY:functools" : 6,
+                "PY:decimal.Decimal" : 7,
+                "PY:ccxt.base.errors.ExchangeNotAvailable" : 6,
+                "PY:os" : 13,
+                "PY:requests.utils.default_user_agent" : 6,
+                "PY:binascii" : 9,
+                "PY:ccxt.base.errors.RequestTimeout" : 6,
+                "PY:ccxt.base.errors.DDoSProtection" : 6,
+                "PY:datatime" : 9,
+                "C:limits.h" : 5,
+                "PY:ccxt.base.decimal_to_precision.decimal_to_precision" : 6,
+                "C:amount.h" : 5,
+                "PY:hmac" : 6,
+                "PY:pandas" : 6,
+                "PY:calendar" : 7,
+                "PY:ccxt.base.decimal_to_precision.number_to_string" : 6,
+                "PY:transaction.transactions.EngravedTransaction" : 9,
+                "C:assert.h" : 4,
+                "C:ctype.h" : 12,
+                "PY:transaction.transactions.TransactionOutput" : 9,
+                "C:system.h" : 4,
+                "PY:email.utils.parsedate" : 6,
+                "PY:ccxt.base.errors.BadSymbol" : 6,
+                "PY:utils.rsa_util.RSAUtil" : 9,
+                "PY:datetime" : 6,
+                "C:memory" : 5,
+                "PY:cryptography.hazmat.primitives.asymmetric.padding" : 6,
+                "C:stdint.h" : 7,
+                "PY:transaction.transactions.CoinbaseTransaction" : 9,
+                "C:filename" : 4
+        },
+        "Gender" : "female",
+        "LatestCommitDate" : 1637010055,
+        "Alias" : [
+                "takagotch <dyaccb@gmail.com>",
+                "Finance viaEng <dyaccb@gmail.com>",
+                "takagotch <30462722+takagotch@users.noreply.github.com>"
+        ],
+        "MonNprj" : {
+                "2021-07" : 1,
+                "2020-07" : 356,
+                "2018-12" : 1745,
+                "2021-10" : 3,
+                "2020-06" : 531,
+                "2021-11" : 2,
+                "2019-07" : 343,
+                "2019-04" : 1229,
+                "2020-09" : 38,
+                "2021-02" : 14,
+                "2021-04" : 9,
+                "2018-05" : 109,
+                "2019-10" : 334,
+                "2019-09" : 518,
+                "2018-01" : 167,
+                "2021-08" : 1,
+                "2020-08" : 11,
+                "2020-03" : 173,
+                "2019-06" : 821,
+                "2018-10" : 430,
+                "2020-12" : 52,
+                "2018-11" : 739,
+                "2019-01" : 2699
+        },
+        "NumAlias" : 3,
+        "NumOriginatingBlobs" : 50079,
+        "AuthorID" : "takagotch <dyaccb@gmail.com>",
+        "MonNcmt" : {
+                "2021-07" : 22,
+                "2020-07" : 1195,
+                "2018-12" : 3596,
+                "2021-10" : 11,
+                "2020-11" : 1314,
+                "2018-02" : 845,
+                "2018-08" : 321,
+                "2021-05" : 68,
+                "2017-12" : 491,
+                "2021-06" : 27,
+                "2019-11" : 330,
+                "2020-12" : 295,
+                "2018-11" : 2462,
+                "2019-01" : 4800
+        },
+        "NumProjects" : 10888,
+        "NumCommits" : 45663,
+        "NumFiles" : 81958
+}
+mongos>
+
+mongoexport --db=WoC --collection=A_metadata.U --query='{"Gender": "female"}' --fields=FileInfo --type=csv --out=progLang.csv
+
+2022-10-08T08:14:54.386-0400    exported 3283682 records
+
+FileInfo
+"{""Python"":14,""other"":83,""Perl"":2,""Sql"":3,""JavaScript"":1,""Java"":8,""C/C++"":22}"
+"{""other"":2,""Java"":4}"
+
+
+"{""other"":1}"
+"{""other"":4}"
+"{""Python"":1,""other"":12,""R"":3,""Java"":9}"
+"{""Ruby"":2,""TypeScript"":1,""Python"":2,""Rust"":92,""PHP"":6895,""other"":2406,""Sql"":1,""JavaScript"":1384,""C/C++"":6,""Java"":1}"
+"{""other"":67,""JavaScript"":24}"
+
+"{""other"":729,""JavaScript"":517,""TypeScript"":907}"
+
+mongoexport --db=WoC --collection=A_metadata.U --query='{"Gender": "male"}' --fields=FileInfo --type=csv --out=progLang_male.csv
+
+2022-10-08T09:20:20.522-0400    exported 15134453 records
+
+walkwithsk@da1:~>python lang_dist.py
+['FileInfo']
+('empty_profile_count - ', 3682168)
+('language Dict - ', {'TypeScript': 1137613, 'Java': 2655825, 'Scala': 100508, 'JavaScript': 5425174, 'Perl': 194167, 'Lua': 99988, 'Basic': 39477, 'Erlang': 18249, 'ipy': 530, 'Python': 2454495, 'Dart': 119409, 'Ada': 8525, 'fml': 128168, 'other': 10672482, 'Sql': 720930, 'Swift': 275465, 'C/C++': 1860405, 'Lisp': 180899, 'Kotlin': 212885, 'R': 213557, 'Clojure': 34368, 'Rust': 413327, 'Fortran': 42894, 'Ruby': 681390, 'OCaml': 585, 'Julia': 19011, 'Cobol': 5402, 'Go': 308908, 'PHP': 1233056})

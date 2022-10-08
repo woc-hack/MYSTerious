@@ -1,0 +1,31 @@
+**************
+Female Lang Dist
+**************
+Total export records - exported 3283682 records
+
+walkwithsk@da1:~>python lang_dist.py
+['FileInfo']
+('empty_profile_count - ', 886340)
+('language Dict - ', {'TypeScript': 185544, 'Java': 491099, 'Scala': 12093, 'JavaScript': 1000837, 'Perl': 23980, 'Fortran': 6614, 'Basic': 5268, 'Erlang': 1552, 'ipy': 69, 'Python': 435494, 'Dart': 16690, 'Ada': 909, 'fml': 16086, 'other': 2239431, 'Sql': 125782, 'Swift': 44360, 'C/C++': 277273, 'Lisp': 29706, 'Kotlin': 30089, 'R': 65120, 'Clojure': 3018, 'Rust': 52881, 'Lua': 9641, 'Ruby': 113439, 'OCaml': 30, 'Julia': 2308, 'Cobol': 583, 'Go': 32539, 'PHP': 193647})
+
+*****************
+Male Lang Dist
+***************
+
+Total export records -   exported 15134453 records
+
+walkwithsk@da1:~>python lang_dist.py
+['FileInfo']
+('empty_profile_count - ', 3682168)
+('language Dict - ', {'TypeScript': 1137613, 'Java': 2655825, 'Scala': 100508, 'JavaScript': 5425174, 'Perl': 194167, 'Lua': 99988, 'Basic': 39477, 'Erlang': 18249, 'ipy': 530, 'Python': 2454495, 'Dart': 119409, 'Ada': 8525, 'fml': 128168, 'other': 10672482, 'Sql': 720930, 'Swift': 275465, 'C/C++': 1860405, 'Lisp': 180899, 'Kotlin': 212885, 'R': 213557, 'Clojure': 34368, 'Rust': 413327, 'Fortran': 42894, 'Ruby': 681390, 'OCaml': 585, 'Julia': 19011, 'Cobol': 5402, 'Go': 308908, 'PHP': 1233056})
+
+*****************
+Unknown Lang Dist
+***************
+
+Total export records -   exported 21576619 records
+
+walkwithsk@da1:~>python lang_dist.py
+['FileInfo']
+('empty_profile_count - ', 7519990)
+('language Dict - ', {'TypeScript': 618600, 'Java': 2548252, 'Scala': 41251, 'JavaScript': 4501614, 'Perl': 93145, 'Lua': 66057, 'Ada': 3746, 'Erlang': 5920, 'ipy': 174, 'Python': 1875477, 'Dart': 79025, 'fml': 53844, 'other': 12938613, 'Sql': 487381, 'Ruby': 308184, 'Basic': 21557, 'C/C++': 1280748, 'Lisp': 83040, 'Kotlin': 132365, 'R': 151255, 'Clojure': 8397, 'Rust': 187325, 'Fortran': 21534, 'Swift': 143925, 'OCaml': 75, 'Julia': 7247, 'Cobol': 2431, 'Go': 161312, 'PHP': 918503})

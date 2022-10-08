@@ -1,0 +1,8 @@
+mongos> db.A_metadata.U.count()
+39,994,754 -> 40 million             
+
+mongos> db.A_metadata.U.count({'Gender':'male'})
+15134453  -> 15.13 million    
+
+mongos>  db.A_metadata.U.count({'Gender':'female'})
+3283682  -> 3,283,682 million -> 3.2 million

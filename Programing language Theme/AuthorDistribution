@@ -1,0 +1,12 @@
+{ "_id" : { "NumProjects" : 1 }, "count" : 9 }
+{ "_id" : { "NumProjects" : 2 }, "count" : 1 }
+
+mongos> db.A_metadata.U.count({$and: [ { NumProjects:{$eq:1} }, {'Gender':'female'} ]}
+... )
+1475243
+
+mongos> db.A_metadata.U.count({$and: [ { NumProjects:{$gt:1} }, {'Gender':'female'} ]})
+1807634  -> 1.8 million  (Number of Projects > 1)
+
+mongos> db.A_metadata.U.count({$and: [ { NumProjects:{$gt:10} }, {'Gender':'female'} ]})
+338290  -> 338 thousand (Number of Projects > 10)
