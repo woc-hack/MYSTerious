@@ -1,0 +1,15 @@
+#Sample 1000 female authors gzip data files
+
+yashdhurde@da0:~> zcat /da?_data/basemaps/gz/c2PtabllfPkgFullS*.s | grep -i female | head -1000 > Sample1000Female.txt 
+
+##readme files from gzip data files
+
+yashdhurde@da0:~> zcat /da?_data/basemaps/gz/b2fFullU*.s |grep README| cut -d\; -f1|uniq | ~/lookup/showCnt blob 1 
+
+##blobs and base64 encoded readme files for sample 1000 females
+
+yashdhurde@da0:~> cat Sample1000Female_Blob.txt | ~/lookup/showCnt blob 1 
+
+#base64 encoded readme files for sample 1000 females
+
+yashdhurde@da0:~> cat Sample1000Female_Blob.txt | ~/lookup/showCnt blob 1 | awk -F";" '{print $2}' > Readme_encoded_1000_Female.txt 
