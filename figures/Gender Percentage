@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+'''
+mongos> db.A_metadata.U.count()
+39,994,754 -> 40 million             
+
+mongos> db.A_metadata.U.count({'Gender':'male'})
+15134453  -> 15.13 million    
+
+mongos>  db.A_metadata.U.count({'Gender':'female'})
+3283682  -> 3,283,682 million -> 3.2 million
+'''
+total = 39994754
+male = round(15134453 * 100 / total, 2)
+female = round(3283682 * 100 / total, 2)
+unknown = round(100 - male - female,2)
+
+labels = ["Females\n" + str(female) + "%", "Males\n" + str(male) + "%",
+          "Unknown\n" + str(unknown) + "%"]
+fig1 = plt.figure(figsize=(4, 3))
+y = np.array([female, male, unknown])
+myexplode = [0.1, 0, 0]
+
+plt.pie(y, labels=labels, explode=myexplode)
+plt.legend(title="Gender Percentage:", labels=["Females", "Males", "Unknown"])
+plt.show()
